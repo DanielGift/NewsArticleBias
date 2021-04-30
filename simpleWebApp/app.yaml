@@ -1,0 +1,4 @@
+runtime: python38
+
+instance_class: F4_1G
+#env_variables: NLTK_DATA: './nltk_data/'
