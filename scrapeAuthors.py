@@ -187,11 +187,11 @@ for ln, fn, lnk, rating in links:
     
 #Now save the data:
 data = pd.DataFrame(data,columns=['lastName','firstName','Site','Text','Rating','URL'],index=range(len(data)))
-data.to_csv('ArticlesBias'+str(minidx)+".csv")
+data.to_csv('successfulArticleScrapes/ArticlesBias'+str(minidx)+".csv")
 bads = pd.DataFrame(bads,columns=['lastName','firstName','Site','Rating','URL'],index=range(len(bads)))
-bads.to_csv('needToParse'+str(minidx)+'.csv')
+bads.to_csv('uncuccessfulArticleScrapes/needToParse'+str(minidx)+'.csv')
 
 #Save the badNames to a file to analyze later
-with open('badNames'+str(minidx)+'.txt','w') as file:
+with open('badNames/badNames'+str(minidx)+'.txt','w') as file:
     for name in badNames:
         file.write(name+"\n")

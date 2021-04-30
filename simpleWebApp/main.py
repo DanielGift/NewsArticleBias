@@ -30,7 +30,10 @@ def index():
         """<form action="" method="get">
                 Article URL: <input type="url" name="URL">
                 <input type="submit" value="Detect Bias!">
-            </form>"""
+            </form>""" 
+            + """<br><br>"""+"This app created by Daniel Gift"+
+            """<br>"""+"You can find the source code, along with a README with the appropriate disclaimers, "
+            + """<a href=https://github.com/DanielGift/NewsArticleBias.git>here</a>"""
         )
     elif rating == "No detected bias":
         return (
@@ -38,8 +41,10 @@ def index():
                 Article URL: <input type="url" name="URL">
                 <input type="submit" value="Detect Bias!">
             </form>"""
-        + "The article titled '" + title + "' has " +
-        + rating
+        + "The article titled '" + title + "' has " + rating 
+        + """<br><br>"""+"This app created by Daniel Gift"+
+            """<br>"""+"You can find the source code, along with a README with the appropriate disclaimers, "
+            + """<a href=https://github.com/DanielGift/NewsArticleBias.git>here</a>"""
         )
     else:
         return (
@@ -47,8 +52,10 @@ def index():
                     Article URL: <input type="url" name="URL">
                     <input type="submit" value="Detect Bias!">
                 </form>"""
-            + "The article titled '" + title + "' has a "
-            + rating
+            + "The article titled '" + title + "' has a " + rating
+            + """<br><br>"""+"This app created by Daniel Gift"+
+            """<br>"""+"You can find the source code, along with a README with the appropriate disclaimers, "
+            + """<a href=https://github.com/DanielGift/NewsArticleBias.git>here</a>"""
         )
 
 #Load the ML models
@@ -70,15 +77,14 @@ def lemmatize_text(text):
     lemmatized_sentence = []
     tokenizer = RegexpTokenizer('\w+|\$[\d\.]+')
     tokens = tokenizer.tokenize(text)
-    return tokens
-    # for word,tag in pos_tag(tokens):
-    #     #Only select adjectives, adverbs, interjections, verbs, or non-proper nouns
-    #     #Proper nouns are unlikely to indicate bias (merely the subject), and other POS are generic and 
-    #     #unlikely to be informative when it comes to bias determinations
-    #     if tag.startswith('J') or tag.startswith('R') or tag.startswith('U') or tag.startswith('V') or tag=="NN" or tag =="NNS":
-    #         if word not in "#$%&'()*+,-./:;<=>?@[\]^_`{|}~" and word not in '"' and word.lower() not in sw:
-    #             lemmatized_sentence.append(lemmatizer.lemmatize(word.lower()))
-    # return lemmatized_sentence
+    for word,tag in pos_tag(tokens):
+        #Only select adjectives, adverbs, interjections, verbs, or non-proper nouns
+        #Proper nouns are unlikely to indicate bias (merely the subject), and other POS are generic and 
+        #unlikely to be informative when it comes to bias determinations
+        if tag.startswith('J') or tag.startswith('R') or tag.startswith('U') or tag.startswith('V') or tag=="NN" or tag =="NNS":
+            if word not in "#$%&'()*+,-./:;<=>?@[\]^_`{|}~" and word not in '"' and word.lower() not in sw:
+                lemmatized_sentence.append(lemmatizer.lemmatize(word.lower()))
+    return lemmatized_sentence
 
 def getArticle(link):
     #Get the article in question
