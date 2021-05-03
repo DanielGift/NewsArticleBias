@@ -59,6 +59,11 @@ Try it on your own article! You can either download the files and run the GUI.py
 
 The files to run https://newsarticlebiasproject.ue.r.appspot.com/ are found in the simpleWebApp folder.
 
+**********
+**Step 7**
+**********
+I also wanted to get a sense of what was causing the algorithm to categorize different articles into the categories. As a first pass attempt to understand this (though I know there are many porblems with this), I analyzed which words have the highest difference between their occurrence frequency in the most frequent category compared to in the 2nd-most-frequent category, and identified these words as some of the more unique identifying words in the Bag Of Words Analysis. This revealed some interesting insights relating to topics of articles that lean in certain directions, as well as revealed some potential improvements to be made as some of the most unique words were related to the website (e.g. an advertisement or subscribe button) rather than the actual article content. Summaries of the most unique 8 words for each category can be found in the uniqueXX.png files (where XX = vr, sr, n, sl, or vl for articles that are Very Right Biased, Slightly Right Biased, Neutral, Slightly Left Biased, or very Left Biased, respectively), or in summary in MostImportantWords.pdf.
+
 ***************
 **Disclaimers**
 ***************
